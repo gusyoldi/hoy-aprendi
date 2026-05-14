@@ -1,13 +1,13 @@
 # Hoy aprendí
 
-Una aplicación web creada con React, Vite y Supabase para compartir datos curiosos de forma fácil y visual.
+Una aplicación web desarrollada con React, Vite y Supabase para registrar, organizar y repasar conceptos aprendidos durante el estudio diario. Pensada como una herramienta de aprendizaje personal, permite guardar apuntes rápidos de forma simple y visual para reforzar conocimientos y seguir el progreso de estudio.
 
 ## Qué hace
 
-- Permite publicar nuevos hechos con texto, fuente y categoría.
+- Permite publicar nuevos conceptos con texto, fuente y categoría.
 - Valida que la fuente sea una URL HTTP/HTTPS antes de guardar.
 - Muestra los datos con filtro de categorías.
-- Actualiza la lista en tiempo real tras publicar un nuevo hecho.
+- Actualiza la lista en tiempo real tras publicar un nuevo concepto.
 
 ## Tecnologías principales
 
@@ -22,7 +22,7 @@ Una aplicación web creada con React, Vite y Supabase para compartir datos curio
 - `src/App.tsx` — Componente principal y lógica de carga.
 - `src/components/NewFactForm.tsx` — Formulario para enviar nuevos datos.
 - `src/components/CategoryFilter.tsx` — Filtro de categorías.
-- `src/components/FactsList.jsx` — Lista de hechos publicados.
+- `src/components/FactsList.jsx` — Lista de conceptos publicados.
 - `src/supabase.ts` — Configuración de Supabase.
 
 ## Comandos útiles
@@ -36,4 +36,5 @@ pnpm preview
 
 ## Por qué es útil
 
-Es un proyecto ideal para aprender a integrar React con Supabase y practicar formularios, validación y estados en una aplicación moderna.
+Es una forma práctica de llevar un registro de las cosas que voy aprendiendo mientras estudio y tenerlas organizadas para repasarlas más adelante.
+Además, me sirve para practicar React, manejo de estado y la integración con Supabase en un proyecto real.
