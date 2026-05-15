@@ -1,22 +1,6 @@
 import { type Dispatch, type SetStateAction, useState } from "react";
 import supabase from "../supabase";
-
-type Category = {
-  name: string;
-  color: string;
-  label: string;
-};
-
-type Fact = {
-  id: number;
-  text: string;
-  source: string;
-  category: string;
-  votesInteresting: number;
-  votesMindblowing: number;
-  votesFalse: number;
-  createdAt?: string;
-};
+import type { Category, Fact } from "../types";
 
 type FactListProps = {
   facts: Fact[];

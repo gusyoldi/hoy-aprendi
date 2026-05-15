@@ -7,12 +7,7 @@ import Header from "./components/Header";
 import NewFactForm from "./components/NewFactForm";
 import "./index.css";
 import supabase from "./supabase";
-
-type Category = {
-  name: string;
-  color: string;
-  label: string;
-};
+import type { Category, Fact } from "./types";
 
 const CATEGORIES: Category[] = [
   { name: "javascript", color: "#eab308", label: "JavaScript" },
@@ -27,7 +22,7 @@ const CATEGORIES: Category[] = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [facts, setFacts] = useState([]);
+  const [facts, setFacts] = useState<Fact[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentCategory, setCurrentCategory] = useState("all");
 
