@@ -36,7 +36,7 @@ function FactCardView({
 
   return (
     <li className="fact">
-      <p>
+      <p className="">
         {isDisputed && <span className="disputed">[⛔POCO CONFIABLE]</span>}
         {fact.text}
         <Link url={fact.source}>(Blog)</Link>

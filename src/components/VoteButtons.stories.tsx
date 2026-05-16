@@ -17,7 +17,7 @@ const meta = {
       description: "Indica si los botones deben estar deshabilitados.",
       control: { type: "boolean" },
     },
-    onVote: {
+    handleVote: {
       control: false,
       description:
         "Callback que se ejecuta al votar en cualquiera de los botones.",
@@ -35,7 +35,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onVote: fn(),
+    handleVote: fn(),
     disabled: false,
     buttons: [
       {
@@ -55,7 +55,7 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
-    onVote: fn(),
+    handleVote: fn(),
     disabled: true,
     buttons: [
       {
