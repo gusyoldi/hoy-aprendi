@@ -6,7 +6,7 @@ export type VoteButtonsType = Array<{
   count: number;
 }>;
 interface VoteButtonsProps {
-  onVote: (voteType: VoteKey) => void;
+  handleVote: (voteType: VoteKey) => void;
   disabled: boolean;
   buttons: VoteButtonsType;
 }
@@ -19,12 +19,12 @@ interface VoteButtonProps {
   voteType: VoteKey;
 }
 
-const VoteButtons = ({ onVote, disabled, buttons }: VoteButtonsProps) => {
+const VoteButtons = ({ handleVote, disabled, buttons }: VoteButtonsProps) => {
   return (
     <div className="vote-buttons">
       {buttons.map(({ voteType, emoji, count }) => (
         <VoteButton
-          onVote={onVote}
+          onVote={handleVote}
           key={voteType}
           emoji={emoji}
           disabled={disabled}

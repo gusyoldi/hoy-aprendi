@@ -8,19 +8,22 @@ interface FactListProps {
   setFacts: Dispatch<SetStateAction<Fact[]>>;
 }
 
+const defaultCategory: Category = {
+  name: "others",
+  color: "#01000042",
+  label: "Otros",
+};
+
 function FactList({ facts, categories, setFacts }: FactListProps) {
+  const findCategory = (factCategory: Fact["category"]) =>
+    categories.find((cat) => cat.name === factCategory) || defaultCategory;
+
   if (facts.length === 0)
     return (
       <p className="message">
         Aún no existen datos para esta categoría, Publicá el tuyo!✌
       </p>
     );
-
-  const defaultCategory: Category = {
-    name: "others",
-    color: "#01000042",
-    label: "Otros",
-  };
 
   return (
     <section>
@@ -29,10 +32,7 @@ function FactList({ facts, categories, setFacts }: FactListProps) {
           <FactCard
             key={fact.id}
             fact={fact}
-            category={
-              categories.find((cat) => cat.name === fact.category) ||
-              defaultCategory
-            }
+            category={findCategory(fact.category)}
             setFacts={setFacts}
           />
         ))}
