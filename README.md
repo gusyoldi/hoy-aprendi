@@ -16,6 +16,7 @@ Una aplicación web desarrollada con React, Vite y Supabase para registrar, orga
 - Vite
 - Supabase (base de datos y backend)
 - ESLint
+- Storybook para documentación de componentes
 
 ## Estructura del proyecto
 

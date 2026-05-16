@@ -37,7 +37,6 @@ function FactCard({ fact, categories, setFacts }: FactProps) {
   }
 
   const { votesInteresting, votesMindblowing, votesFalse } = fact;
-  console.log(votesInteresting, votesMindblowing, votesFalse);
 
   return (
     <li className="fact">

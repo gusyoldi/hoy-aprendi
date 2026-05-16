@@ -51,13 +51,13 @@ function App() {
     <>
       <Header logo={LOGO_IMG} showForm={showForm} onShowForm={setShowForm} />
 
-      {showForm ? (
+      {showForm && (
         <NewFactForm
           categories={CATEGORIES}
           setFacts={setFacts}
           setShowForm={setShowForm}
         />
-      ) : null}
+      )}
 
       <main className="main">
         <CategoryFilter
