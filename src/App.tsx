@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import LOGO_IMG from "./assets/images/logo.png";
+import logo from "./assets/images/logo.png";
 
 import CategoryFilter from "./components/CategoryFilter";
 import FactList from "./components/FactsList";
 import Header from "./components/Header";
 import NewFactForm from "./components/NewFactForm";
-import "./index.css";
+import "./styles/global.css";
 import supabase from "./supabase";
 import type { Category, Fact } from "./types";
 
@@ -19,6 +19,8 @@ const CATEGORIES: Category[] = [
   { name: "msw", color: "#f97316", label: "MSW" },
   { name: "css", color: "#8b5cf6", label: "CSS" },
 ];
+
+export const LOGO_IMG = logo;
 
 function App() {
   const [showForm, setShowForm] = useState(false);
