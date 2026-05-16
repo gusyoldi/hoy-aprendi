@@ -1,9 +1,14 @@
 import type { VoteKey } from "./FactCard";
 
+export type VoteButtonsType = Array<{
+  voteType: VoteKey;
+  emoji: string;
+  count: number;
+}>;
 interface VoteButtonsProps {
   onVote: (voteType: VoteKey) => void;
   disabled: boolean;
-  buttons: Array<{ voteType: VoteKey; emoji: string; count: number }>;
+  buttons: VoteButtonsType;
 }
 
 interface VoteButtonProps {
@@ -13,20 +18,6 @@ interface VoteButtonProps {
   onVote?: (voteType: VoteKey) => void;
   voteType: VoteKey;
 }
-
-const VoteButton = ({
-  count,
-  emoji,
-  disabled,
-  onVote,
-  voteType,
-}: VoteButtonProps) => {
-  return (
-    <button onClick={() => onVote?.(voteType)} disabled={disabled}>
-      {emoji} {count}
-    </button>
-  );
-};
 
 const VoteButtons = ({ onVote, disabled, buttons }: VoteButtonsProps) => {
   return (
@@ -42,6 +33,20 @@ const VoteButtons = ({ onVote, disabled, buttons }: VoteButtonsProps) => {
         />
       ))}
     </div>
+  );
+};
+
+const VoteButton = ({
+  count,
+  emoji,
+  disabled,
+  onVote,
+  voteType,
+}: VoteButtonProps) => {
+  return (
+    <button onClick={() => onVote?.(voteType)} disabled={disabled}>
+      {emoji} {count}
+    </button>
   );
 };
 

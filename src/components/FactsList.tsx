@@ -16,6 +16,12 @@ function FactList({ facts, categories, setFacts }: FactListProps) {
       </p>
     );
 
+  const defaultCategory: Category = {
+    name: "others",
+    color: "#01000042",
+    label: "Otros",
+  };
+
   return (
     <section>
       <ul className="facts-list">
@@ -23,7 +29,10 @@ function FactList({ facts, categories, setFacts }: FactListProps) {
           <FactCard
             key={fact.id}
             fact={fact}
-            categories={categories}
+            category={
+              categories.find((cat) => cat.name === fact.category) ||
+              defaultCategory
+            }
             setFacts={setFacts}
           />
         ))}

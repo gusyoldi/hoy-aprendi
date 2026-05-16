@@ -64,6 +64,7 @@ function App() {
           categories={CATEGORIES}
           setCurrentCategory={setCurrentCategory}
         />
+
         {isLoading ? (
           <Loader />
         ) : (

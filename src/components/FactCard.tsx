@@ -1,11 +1,13 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import supabase from "../supabase";
 import type { Category, Fact } from "../types";
-import VoteButtons from "./VoteButtons";
+import Link from "./Link";
+import Tag from "./Tag";
+import VoteButtons, { type VoteButtonsType } from "./VoteButtons";
 
-interface FactProps {
+interface FactCardProps {
   fact: Fact;
-  categories: Category[];
+  category: Category;
   setFacts: Dispatch<SetStateAction<Fact[]>>;
 }
 
@@ -14,13 +16,10 @@ export type VoteKey = keyof Pick<
   "votesInteresting" | "votesMindblowing" | "votesFalse"
 >;
 
-function FactCard({ fact, categories, setFacts }: FactProps) {
+function FactCard({ fact, category, setFacts }: FactCardProps) {
   const [isUpdating, setIsUpdating] = useState(false);
   const isDisputed =
     fact.votesInteresting + fact.votesMindblowing < fact.votesFalse;
-  const categoryLabel = categories.find(
-    (cat) => cat.name === fact.category,
-  )?.label;
 
   async function handleVote(columnName: VoteKey) {
     setIsUpdating(true);
@@ -36,49 +35,34 @@ function FactCard({ fact, categories, setFacts }: FactProps) {
       );
   }
 
-  const { votesInteresting, votesMindblowing, votesFalse } = fact;
+  const voteButtons: VoteButtonsType = [
+    {
+      voteType: "votesInteresting",
+      emoji: "👍",
+      count: fact.votesInteresting,
+    },
+    {
+      voteType: "votesMindblowing",
+      emoji: "😲",
+      count: fact.votesMindblowing,
+    },
+    { voteType: "votesFalse", emoji: "❌", count: fact.votesFalse },
+  ];
 
   return (
     <li className="fact">
       <p>
-        {isDisputed ? (
-          <span className="disputed">[⛔POCO CONFIABLE]</span>
-        ) : null}
+        {isDisputed && <span className="disputed">[⛔POCO CONFIABLE]</span>}
         {fact.text}
-        <a
-          className="source"
-          href={fact.source}
-          target="_blank"
-          rel="noreferrer"
-        >
-          (Blog)
-        </a>
+        <Link url={fact.source}>(Blog)</Link>
       </p>
-      <span
-        className="tag"
-        style={{
-          backgroundColor: categories.find((cat) => cat.name === fact.category)
-            ?.color,
-        }}
-      >
-        {categoryLabel}
-      </span>
+
+      <Tag label={category.label} color={category.color} />
+
       <VoteButtons
         onVote={handleVote}
         disabled={isUpdating}
-        buttons={[
-          {
-            voteType: "votesInteresting",
-            emoji: "👍",
-            count: votesInteresting,
-          },
-          {
-            voteType: "votesMindblowing",
-            emoji: "😲",
-            count: votesMindblowing,
-          },
-          { voteType: "votesFalse", emoji: "❌", count: votesFalse },
-        ]}
+        buttons={voteButtons}
       />
     </li>
   );
