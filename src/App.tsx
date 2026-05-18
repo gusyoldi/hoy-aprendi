@@ -9,7 +9,7 @@ import "./styles/global.css";
 import supabase from "./supabase";
 import type { Category, Fact } from "./types";
 
-const CATEGORIES: Category[] = [
+export const CATEGORIES: Category[] = [
   { name: "javascript", color: "#eab308", label: "JavaScript" },
   { name: "react", color: "#3b82f6", label: "React" },
   { name: "node", color: "#16a34a", label: "Node" },
@@ -26,7 +26,8 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [facts, setFacts] = useState<Fact[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentCategory, setCurrentCategory] = useState("all");
+  const [currentCategory, setCurrentCategory] =
+    useState<Category["name"]>("all");
 
   useEffect(() => {
     async function getFacts() {

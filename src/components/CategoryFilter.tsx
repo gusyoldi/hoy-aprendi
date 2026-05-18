@@ -1,6 +1,15 @@
-interface CategoryFilterProps {}
+import type { Dispatch, SetStateAction } from "react";
+import type { Category } from "../types";
 
-function CategoryFilter({ categories, setCurrentCategory }) {
+interface CategoryFilterProps {
+  categories: Category[];
+  setCurrentCategory: Dispatch<SetStateAction<Category["name"]>>;
+}
+
+function CategoryFilter({
+  categories,
+  setCurrentCategory,
+}: CategoryFilterProps) {
   return (
     <aside>
       <ul>

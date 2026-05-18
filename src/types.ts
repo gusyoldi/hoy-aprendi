@@ -1,5 +1,16 @@
+type CategoryName =
+  | "all"
+  | "javascript"
+  | "react"
+  | "node"
+  | "nest"
+  | "storybook"
+  | "typescript"
+  | "msw"
+  | "css";
+
 export type Category = {
-  name: string;
+  name: CategoryName;
   color: string;
   label: string;
 };

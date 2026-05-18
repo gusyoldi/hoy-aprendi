@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { fn } from "storybook/test";
+import { expect, fn, within } from "storybook/test";
 import VoteButtons from "./VoteButtons";
 
 const meta = {
@@ -32,6 +32,25 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+export const SingleButton: Story = {
+  args: {
+    handleVote: fn(),
+    disabled: false,
+    buttons: [{ voteType: "votesFalse", emoji: "❌", count: 6 }],
+  },
+
+  play: async ({ args, canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: /❌/i });
+
+    await expect(button).not.toBeDisabled();
+
+    await userEvent.click(button);
+
+    await expect(args.handleVote).toHaveBeenCalled();
+  },
+};
 
 export const Default: Story = {
   args: {
@@ -70,5 +89,20 @@ export const Disabled: Story = {
       },
       { voteType: "votesFalse", emoji: "❌", count: 6 },
     ],
+  },
+
+  play: async ({ args, canvasElement, userEvent }) => {
+    const canvas = within(canvasElement);
+    const buttons = canvas.getAllByRole("button");
+
+    await expect(buttons).toHaveLength(3);
+
+    for (const button of buttons) {
+      await expect(button).toBeDisabled();
+    }
+
+    await userEvent.click(buttons[0]);
+
+    await expect(args.handleVote).not.toHaveBeenCalled();
   },
 };
