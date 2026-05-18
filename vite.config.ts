@@ -18,10 +18,10 @@ const dirname =
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     babel({
       presets: [reactCompilerPreset()],
     }),
-    tailwindcss(),
   ],
   test: {
     projects: [

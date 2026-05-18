@@ -7,7 +7,12 @@ interface LinkProps {
 
 const Link = ({ children, url }: LinkProps) => {
   return (
-    <a className="source" href={url} target="_blank" rel="noreferrer">
+    <a
+      className="source visited:decoration-0 text-link ml-3 transition-all duration-300"
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+    >
       {children}
     </a>
   );
