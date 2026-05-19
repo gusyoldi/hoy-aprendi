@@ -4,6 +4,14 @@ import "../src/styles/global.css";
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: "dark",
+      values: [
+        { name: "light", value: "#ffffff" },
+        { name: "dark", value: "#292524" },
+      ],
+    },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
