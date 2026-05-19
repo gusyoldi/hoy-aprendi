@@ -2,18 +2,17 @@ name: Chromatic
 
 on:
   push:
-    branches:
-      - main
-
-  pull_request:
 
 jobs:
   chromatic:
+    name: Run Chromatic
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -21,13 +20,15 @@ jobs:
           version: 10
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Publish to Chromatic
-        run: pnpm chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
