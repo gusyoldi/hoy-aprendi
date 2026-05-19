@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic"
+    "chromatic": "npx chromatic --project-token=chpt_4ef3d6ca2bfc287"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.105.4",
@@ -49,5 +49,6 @@
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12",
     "vitest": "^4.1.6"
-  }
+  },
+  "packageManager": "pnpm@10.17.1"
 }
