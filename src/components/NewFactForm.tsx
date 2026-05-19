@@ -1,5 +1,5 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
-import supabase from "../supabase";
+import { createFact } from "../services/fact";
 import type { Category, Fact } from "../types";
 
 type NewFactFormProps = {
@@ -28,13 +28,12 @@ function NewFactForm({ categories, setFacts, setShowForm }: NewFactFormProps) {
   async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (text.length <= 200 && isValidHttpUrl(source) && category) {
+    const isValidText = text.length <= 200;
+
+    if (isValidText && isValidHttpUrl(source) && category) {
       setIsUploading(true);
 
-      const { data: newFact, error } = await supabase
-        .from("facts")
-        .insert([{ text, source, category }])
-        .select();
+      const { data: newFact, error } = await createFact(text, source, category);
 
       if (!error && newFact?.length) {
         setFacts((facts) => [newFact[0], ...facts]);

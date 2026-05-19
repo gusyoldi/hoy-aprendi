@@ -1,5 +1,5 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
-import supabase from "../../supabase";
+import { updateFact } from "../../services/fact";
 import type { Fact } from "../../types";
 import type { VoteKey } from "../FactCard";
 
@@ -14,11 +14,7 @@ export default function useFactVoting({
 
   async function handleVote(columnName: VoteKey) {
     setIsUpdating(true);
-    const { data: updatedFact, error } = await supabase
-      .from("facts")
-      .update({ [columnName]: fact[columnName] + 1 })
-      .eq("id", fact.id)
-      .select();
+    const { data: updatedFact, error } = await updateFact(fact, columnName);
     setIsUpdating(false);
 
     if (!error && updatedFact?.length)
